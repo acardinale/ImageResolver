@@ -26,15 +26,15 @@ ImageResolver.prototype.register = function(fn) {
 
 };
 
-ImageResolver.prototype.next = function(filters, url, clbk) {
+ImageResolver.prototype.next = function(filters, html, url, clbk) {
 
     var self = this;
     var filter;
     if (filters.length) {
         filter = filters[0];
-        filter.resolve( url, function( data ){
+        filter.resolve( html, url, function( data ){
             if (data === null) {
-                self.next(filters.slice(1), url, clbk);
+                self.next(filters.slice(1), html, url, clbk);
                 return;
             } else {
                 clbk(data);
@@ -48,11 +48,12 @@ ImageResolver.prototype.next = function(filters, url, clbk) {
 
 };
 
-ImageResolver.prototype.resolve = function(url, clbk) {
+ImageResolver.prototype.resolve = function(html, url, clbk) {
 
     var callback = function( image ) {
         if ( image ) {
             clbk( {
+                'html': html,
                 'url': url,
                 'image': image
             } );
@@ -64,7 +65,7 @@ ImageResolver.prototype.resolve = function(url, clbk) {
     }
 
     var filters = this.filters;
-    this.next(filters, url, callback);
+    this.next(filters, html, url, callback);
     return this;
 
 };

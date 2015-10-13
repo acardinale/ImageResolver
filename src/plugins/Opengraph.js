@@ -38,10 +38,10 @@ var tags = [
 
 function Opengraph() {
 }
-Opengraph.prototype.resolve = function(url, clbk, options, utils) {
+Opengraph.prototype.resolve = function(data, url, clbk, options, utils) {
     var self = this;
 
-    utils.fetch(
+    /*utils.fetch(
         url,
         function onSuccess( data, response ) {
             self.parseHTML( data, url, clbk, options, utils );
@@ -49,7 +49,8 @@ Opengraph.prototype.resolve = function(url, clbk, options, utils) {
         function onError(){
             clbk(null);
         }
-    );
+    );*/
+    self.parseHTML( data, url, clbk, options, utils );
 };
 
 Opengraph.prototype.parseHTML = function( html, url, clbk, options, utils ) {

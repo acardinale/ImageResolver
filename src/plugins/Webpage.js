@@ -50,11 +50,11 @@ Webpage.prototype._score = function( image ) {
     return score;
 };
 
-Webpage.prototype.resolve = function(url, clbk, options, utils) {
+Webpage.prototype.resolve = function(data, url, clbk, options, utils) {
 
     var self = this;
 
-    utils.fetch(
+    /*utils.fetch(
         url,
         function onSuccess( data, response ) {
             self.parseHTML( data, url, clbk, options, utils );
@@ -63,6 +63,8 @@ Webpage.prototype.resolve = function(url, clbk, options, utils) {
             clbk(null);
         }
     );
+    */
+    self.parseHTML( data, url, clbk, options, utils );
 
 };
 
